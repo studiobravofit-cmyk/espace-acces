@@ -1,0 +1,14 @@
+<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>Bravo Fit · Ton espace</title>
+<style>body{margin:0;min-height:100vh;display:flex;align-items:center;justify-content:center;background:#faf7f2;font-family:Georgia,serif;color:#2b2622;padding:22px;box-sizing:border-box}.bx{max-width:430px;width:100%;background:#fff;border:1px solid #e8dfd2;border-radius:18px;padding:28px 24px;text-align:center;box-shadow:0 10px 40px rgba(60,40,20,.08)}.lg{letter-spacing:.32em;font-size:12px;color:#a8875a;margin-bottom:18px}h1{font-size:24px;font-weight:normal;margin:0 0 12px}p{font-family:-apple-system,Helvetica,Arial,sans-serif;font-size:15px;line-height:1.55;color:#5a524a}a.bt{display:block;margin-top:14px;padding:14px;border-radius:12px;background:#2b2622;color:#fff;text-decoration:none;font-family:-apple-system,Helvetica,Arial,sans-serif}</style></head><body><div class="bx"><div class="lg">BRAVO FIT</div><div id="m"><h1>Un instant…</h1></div></div>
+<script>
+(function(){var q=new URLSearchParams(location.search),p=q.get('p'),k=q.get('k'),m=document.getElementById('m');
+var KEYS={r:'a944e61898960205',p:'3cdaf41da22af942'},pd=null;try{pd=JSON.parse(localStorage.getItem('bf_pending')||'null')}catch(e){}
+if(!p||KEYS[p]!==k){m.innerHTML='<h1>Lien incomplet</h1><p>Ouvre ton espace depuis le lien reçu après ton paiement.</p>';return}
+if(!pd||!pd.s){m.innerHTML='<h1>Merci pour ton paiement</h1><p>Pour ouvrir ton espace, fais ce paiement depuis le téléphone où tu utilises ton appli Bravo Fit. Sinon, écris à Chantal : elle t’envoie un code d’accès.</p>';return}
+var K='bf_'+pd.s+'_acces',st={};try{st=JSON.parse(localStorage.getItem(K)||'{}')}catch(e){}
+var sid=q.get('session_id')||'';st.sessions=st.sessions||[];
+if(!sid||st.sessions.indexOf(sid)<0){var d=new Date(Math.max(Date.now(),st.until||0));d.setMonth(d.getMonth()+6);st.until=d.getTime();st.depuis=st.depuis||Date.now();if(sid)st.sessions.push(sid);localStorage.setItem(K,JSON.stringify(st))}
+localStorage.removeItem('bf_pending');
+m.innerHTML='<h1>Ton espace est ouvert</h1><p>Tu as accès jusqu’au '+new Date(st.until).toLocaleDateString('fr-FR')+'. Tu retrouves tout ce que tu avais enregistré.</p><a class="bt" href="'+pd.u+'">Retrouver mon espace</a>';
+setTimeout(function(){location.href=pd.u},2500)})();
+</script></body></html>
